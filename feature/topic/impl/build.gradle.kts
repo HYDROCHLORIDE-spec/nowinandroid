@@ -18,10 +18,12 @@ plugins {
     alias(libs.plugins.nowinandroid.android.feature.impl)
     alias(libs.plugins.nowinandroid.android.library.compose)
     alias(libs.plugins.nowinandroid.android.library.jacoco)
+    alias(libs.plugins.roborazzi)
 }
 
 android {
     namespace = "com.google.samples.apps.nowinandroid.feature.topic.impl"
+    testOptions.unitTests.isIncludeAndroidResources = true
 }
 
 dependencies {
@@ -31,7 +33,9 @@ dependencies {
     implementation(libs.androidx.compose.material3.adaptive.navigation3)
 
     testImplementation(projects.core.testing)
+    testImplementation(libs.hilt.android.testing)
     testImplementation(libs.robolectric)
+    testDemoImplementation(projects.core.screenshotTesting)
 
     androidTestImplementation(libs.bundles.androidx.compose.ui.test)
     androidTestImplementation(projects.core.testing)
